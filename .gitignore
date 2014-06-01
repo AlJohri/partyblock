@@ -1,0 +1,5 @@
+.secret*
+*.pyc
+*.log
+.DS_Store
+venv

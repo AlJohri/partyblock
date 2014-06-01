@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ "$FLASK_ENV" == "production" ]; then
+	celery flower -A app.tasks --loglevel=INFO -b=$RABBITMQ_URL --broker_api=$RABBITMQ_URL/api
+else
+	RABBITMQ_URL=${RABBITMQ_URL:-"amqp://guest:guest@localhost//"}
+	celery flower -A app.tasks --loglevel=DEBUG -b=$RABBITMQ_URL --broker_api=$RABBITMQ_URL/api
+fi
