@@ -11,7 +11,7 @@
 
 .jumbotron {
     height:500px;
-    background-image:url('https://dl-web.dropbox.com/get/psd-assets/Layer%206.png?_subject_uid=49874095&w=AAD6e9m4rR7xEEftPwuQblQWAhjlP7drfVMbyMT-2eUuSA');
+    background-image:url('/static/background.png');
 }
 
 .pull-right li {
