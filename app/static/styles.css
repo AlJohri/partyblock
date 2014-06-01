@@ -31,8 +31,8 @@
 .logo img {
     height:65px;
     position:absolute;
-    top:-15;
-    left:20;
+    top:-15px;
+    left:10px;
 }
 
 .sign h2 {
@@ -40,14 +40,14 @@
     color:#000;
     position:absolute;
     top:170px;
-    left:99px;
+    left:72px;
     font-size:24
     }
 
 .signup {
     color:#000;
     position:absolute;
-    left:83px;
+    left:85px;
     font-family:helvetica
 }
 
@@ -72,7 +72,7 @@
 
 .about p {
     position:absolute;
-    top:600;
+    top:600px;
     width:1000px;
     left:20px
 }
