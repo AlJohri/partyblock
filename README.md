@@ -1,102 +1,16 @@
 Summary
 ------------------
-This flask-template allows you to easily deploy distributed applications.
+PartyBlock is an application built for the Journalism School Hackathon at UNC on May 31st/June 1st 2014. We were posed a challenge by the Raleigh Public Record:
+> How can we provide greater transparency into local government planning decisions and actions?
 
-Getting Started
-------------------
-Install RabbitMQ (We use RabbitMQ but the template supports any ampq implementation)
-http://www.rabbitmq.com/download.html
+The Raleigh Public Record uses a service called SeeClickFix as a feature on their website http://raleighpublicrecord.org/seeclickfix/. This is one of the most interactive components and allows direct audience feedback and engagement.
 
-Development Setup
-------------------
+Our goal here at the Hackathon is to find ways to convert this engagements into civic engagement by informing the userbase already interacting with the city of Raleigh about potential changes to zoning rules, new developments, and essentially linking it to data provided by the Open Raleigh API (Socrata).
 
-```bash
-mkvirtualenv app
-pip install -r requirements.txt #install dependencies
-python manage.py db init #initialize database
-touch .secret
-honcho start -e .secret
-foreman start -e .secret # alternative ruby version
-```
+Unfortunately, we don't have access to the contact information of SeeClickFix reporters apart from a (usually fake) name. However, we find that the SeeClickFix platform is an amazing tool to create communities around hyperlocale issues. Instead of starting from scratch which would be counterproductive, our best approach is to use this open source tool and work with SeeClickFix to provide a channel to communicate with users that care about a particular region of Raleigh.
 
-Add FLASK_ENV=production before honcho/foreman to run in 'production' mode
+To work around the lack of contact information for a prototype, we are creating a website, currently specific to Raleigh, that is essentially a complete wrapper around SeeClickFix. A users logs into the website using Facebook and is then able to specify the zone in which he resides. He is presented with a leaflet map with data entirely replicated from SeeClickFix. When the user attempts to report an issue, we route the API call through our server and create an issue on the SeeClickFix server. On success, we duplicate this issue in our own database.
 
-If running honcho or foreman and both processes fail to start, you may 
-end up with several different versions of a single process running. Use
-a variation of the command below to stop them.
+Currently, we wrote a small offline script to grab issues and reporters from SeeClickFix within and around Raleigh. I will most likely instead make direct API calls and not store the data in the next iteration if this is possible. The only data we need to store is the Facebook Profile, Email Address, and corresponding SeeClickFix reporter id.
 
-```bash
-ps aux | egrep 'celery worker|python manage|gunicorn|flower' | grep -v grep | awk '{print $2}' | xargs kill -9
-```
-
-Use this to detect whether the processes are running.
-```bash
-ps aux | egrep 'gunicorn|celery|manage.py'
-```
-
-Use this to clear all celery tasks from rabbitmq.
-```bash
-rabbitmqctl stop_app && rabbitmqctl reset && rabbitmqctl start_app
-```
-
-Edit configuration/connection/logging settings in the "alembic.ini" file inside the migrations folder before proceeding. 
-More info at : http://alembic.readthedocs.org/en/latest/tutorial.html#editing-the-ini-file
-
-Create models in the "app/models" directory. 
-More info at: https://pythonhosted.org/Flask-SQLAlchemy/models.html
-
-
-Git Submodules
----------------
-As you're developing non-domain specific python packages, you should use git submodules to add them to the lib folder. See this stackoverflow for how to do that: http://stackoverflow.com/questions/9189575/git-submodule-tracking-latest
-
-Using git submodules helps you easily go back and forth between both codebases.
-
-After Creating Models
--------------------------
-```bash
-python manage.py db migrate
-```
-
-Documenting Code
------------------
-```bash
-sphinx-quickstart
-```
-
-Production Setup
-------------------
-
-Heroku
-```bash
-heroku config:set FLASK_ENV=production
-```
-
-Dokku
-```bash
-dokku config:set FLASK_ENV=production
-```
-
-Dokku Specific Instructions
------------------------------
-Dokku uses root account to run processes thus it requires C_FORCE_ROOT.
-```
-dokku config:set C_FORCE_ROOT=True
-```
-
-Flask-Migrate (alembic)
-------------------------
-```bash
-python manage.py db init
-```
-```bash
-python manage.py db migrate
-```
-```bash
-python manage.py db upgrade
-```
-Don't forget to drop alembic_version table from your DB!
-
-sudo docker run -t --link rabbitmq_test-www:broker app/test-www:latest /bin/bash -c /start
-
-sudo docker run -i -t --link rabbitmq_test-www:broker app/test-www:latest /bin/bash
+SeeClickFix uses "watch areas" to notify surrounding reporters of issues within a particular radius. Future work entails mapping the watch areas on SeeClickFix to the zoning districts of Raleigh.
