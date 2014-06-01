@@ -1,0 +1,78 @@
+.box_round {
+    border-radius: 12px;
+    height:345px;
+    width:400px;
+    position:absolute;
+    top:20%;
+    left:42%;
+    margin-top:-50px; /* this is half the height of your div*/  
+    margin-left:-100px; /*this is half of width of your div*/
+}
+
+.jumbotron {
+    height:500px;
+    background-image:url('https://dl-web.dropbox.com/get/psd-assets/Layer%206.png?_subject_uid=49874095&w=AAD6e9m4rR7xEEftPwuQblQWAhjlP7drfVMbyMT-2eUuSA');
+}
+
+.pull-right li {
+    display:inline;
+    font-size:20px;
+    color:#fff;
+    
+}
+
+.fb img {
+    height:70px;
+    position:absolute;
+    top:30%;
+    left:10%;
+}
+
+.logo img {
+    height:65px;
+    position:absolute;
+    top:-15;
+    left:20;
+}
+
+.sign h2 {
+    font-family:Helvetica;
+    color:#000;
+    position:absolute;
+    top:170px;
+    left:99px;
+    font-size:24
+    }
+
+.signup {
+    color:#000;
+    position:absolute;
+    left:83px;
+    font-family:helvetica
+}
+
+.horizontal { 
+    display: inline; border-left: 2px solid; padding-left: 0.3em; 
+}
+
+.first { 
+    border-left: none; padding-left: 0; 
+}
+
+.nav {
+    background-color:#5e5e5e
+}
+
+.about h1 {
+    font-family:Helvetica;
+    position:absolute;
+    top:530px;
+    left:20px;
+}
+
+.about p {
+    position:absolute;
+    top:600;
+    width:1000px;
+    left:20px
+}

@@ -14,5 +14,7 @@ class BaseModel(object):
             d[column.name] = val
         return d
 
+from app.models.user import User
 from app.models.issue import Issue
 from app.models.reporter import Reporter
+from app.models.connection import Connection
