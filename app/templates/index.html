@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Party Block</title>
-	<meta charset="utf-8" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<link rel='stylesheet' href='/static/styles.css'/>
+	<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'/>
+	<!-- <script src='script.js'></script> -->
 </head>
 <body>
-	<div id="map" style="width: 600px; height: 400px"></div>
-
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-	<script>
-
-		var map = L.map('map').setView([35.843768, -78.645056], 11);
-
-		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-			maxZoom: 18,
-			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			id: 'examples.map-i86knfo3'
-		}).addTo(map);
-
-		console.log('asdf');
-		$.get("/api/issues/", function( issues ) {
-  			console.log(issues);
-  			_.map(issues['data'], function(issue) { 
-  				L.marker([issue.lat, issue.lng]).addTo(map).bindPopup(issue.description) 
-  			});
-		});
-
-	</script>
+    <div class='nav'>
+        <div class='container'>
+            <div class='pull-left'>
+            <div class='logo'>
+            <img src='/static/logo.png'/>
+            </div>
+            </div>
+            <div class='pull-right'>
+            <ul>
+                <li class='horizontal first'>Sign Up</li>
+                <li class='horizontal'>About</li>
+                <li class='horizontal'>Contact us</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div class='jumbotron'>
+        <div class='container'>
+        <div class="box_round" style='background-color:rgba(153,186,221,0.5);'>
+        <div class='signup'>
+        <h1>Join us!</h1>
+        </div>
+        <div class='fb'>
+       <a href='/map'> <img src='http://socialtofu.com/wp-content/themes/twentytwelve/images/login-facebook.png'></a>
+        </div>
+        <div class='sign'>
+        <h2>Sign up with Email</h2>
+        </div>
+        </div>
+        </div>
+    </div>
+    <div class='about'>
+        <h1>About us</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
 </body>
 </html>

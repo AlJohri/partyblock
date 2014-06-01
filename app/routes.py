@@ -11,11 +11,11 @@ from flask.ext.login import login_required
 # @cross_origin() #allow all origins all methods everywhere in the app
 # def after(response): return response
 
-@app.route('/landing')
-def landing():
+@app.route('/map')
+def map():
 	return render_template(
-		'landing.html',
-		content='Landing Page'
+		'map.html',
+		content='Map Page'
 		)
 
 # @app.route('/login')
